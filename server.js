@@ -8,7 +8,7 @@ const { StreamChat } = require('stream-chat');
 const app = express();
 
 const corsOptions = {
-  origin: ['http://localhost:4200', 'https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt'],
+  origin: 'http://localhost:4200',
   optionsSuccessStatus: 200
 }
 

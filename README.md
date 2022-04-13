@@ -14,14 +14,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Follow the steps below to build the Angular application:
 
-### Default environment
+### Development environment
 
-- Update the `randomApiKey` environment variable in the `environment.js` file to use the [RANDOM.ORG](https://www.random.org/) API key that you have.
+- Update the `randomApiKey` environment variable in the `environment.js` file with your [RANDOM.ORG](https://www.random.org/) API key.
 
     ```javascript
     export const environment = {
         // ...
-        randomApiKey: '<YOUR_RANDOM_ORG_API_KEY>'
+        randomApiKey: '<YOUR_RANDOM_ORG_API_KEY>',
         // ...
     };
     ```
@@ -30,7 +30,7 @@ Follow the steps below to build the Angular application:
 
 ### Production environment
 
-- Update the `randomApiKey` environment variable in the `environment.prod.js` file to use the [RANDOM.ORG](https://www.random.org/) API key that you have for the production environment.
+- Update the `randomApiKey` environment variable in the `environment.prod.js` file with your [RANDOM.ORG](https://www.random.org/) API key for the production environment.
 
     ```javascript
     export const environment = {
@@ -40,7 +40,21 @@ Follow the steps below to build the Angular application:
     };
     ```
 
-- Update the `apiUrl` environment variable in the `environment.prod.js` file to use the [LocalTunnel](http://localtunnel.github.io/www/) subdomain you want to set for your API.
+- Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### Production environment with LocalTunnel
+
+- Update the `randomApiKey` environment variable in the `environment.prod.js` file with your [RANDOM.ORG](https://www.random.org/) API key for the production environment.
+
+    ```javascript
+    export const environment = {
+        // ...
+        randomApiKey: '<YOUR_RANDOM_ORG_PROD_API_KEY>'
+        // ...
+    };
+    ```
+
+- Update the `apiUrl` environment variable in the `environment.prod.js` file with your [LocalTunnel](http://localtunnel.github.io/www/) subdomain for your API.
 
     ```javascript
     export const environment = {
@@ -56,14 +70,14 @@ Follow the steps below to build the Angular application:
 
 After build the Angular application follow the steps below:
 
-- Update the `.env` file in the project root folder with your [Stream](https://getstream.io/) API Key / App Secret.
+### Development environment
+
+- Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
     ```
     STREAM_API_KEY=<YOUR_STREAM_API_KEY>
     STREAM_APP_SECRET=<YOUR_STREAM_APP_SECRET>
     ```
-
-### Default environment
 
 - Run `./server.js` to start the Backend application. The application will be available at [http://localhost:5500](http://localhost:5500).
 
@@ -71,17 +85,37 @@ After build the Angular application follow the steps below:
 
 ### Production environment
 
-- Update the cors options in the `server.js` file to use the [LocalTunnel](http://localtunnel.github.io/www/) subdomain you want to set for your Frontend application.
+- Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
+
+    ```
+    STREAM_API_KEY=<YOUR_STREAM_API_KEY>
+    STREAM_APP_SECRET=<YOUR_STREAM_APP_SECRET>
+    ```
+
+- Run `./server.js` to start the Backend application. The application will be available at [http://localhost:5500](http://localhost:5500).
+
+- Run `ng serve --configuration production` to start the Frontend application. The application will be available at [http://localhost:4200](http://localhost:4200).
+
+### Production environment with LocalTunnel
+
+- Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
+
+    ```
+    STREAM_API_KEY=<YOUR_STREAM_API_KEY>
+    STREAM_APP_SECRET=<YOUR_STREAM_APP_SECRET>
+    ```
+
+- Update the cors options in the `server.js` file with your [LocalTunnel](http://localtunnel.github.io/www/) subdomain for your Frontend.
 
     ```javascript
     const corsOptions = {
         // ...
-        origin: [/* ... */, 'https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt', /* ... */],
+        origin: 'https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt'
         // ...
     }
     ```
 
-- Update the commands used to start this application in the `start.sh` file to use the [LocalTunnel](http://localtunnel.github.io/www/) subdomains you defined for your application.
+- Update the commands used to start this application in the `start.sh` file with your [LocalTunnel](http://localtunnel.github.io/www/) subdomains.
 
     ```sh
     lt --port 5500 --subdomain <YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME> # ...
