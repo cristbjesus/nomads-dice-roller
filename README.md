@@ -68,7 +68,7 @@ Follow the steps below to build the Angular application:
 
 ## How to run the application (Frontend and Backend)
 
-After build the Angular application follow the steps below:
+Follow the steps below:
 
 ### Development environment
 
@@ -98,6 +98,8 @@ After build the Angular application follow the steps below:
 
 ### Production environment with LocalTunnel
 
+- Build the Angular application.
+
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
     ```
@@ -122,7 +124,7 @@ After build the Angular application follow the steps below:
     lt --port 80 --subdomain <YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME> # ...
     ```
 
-- Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt](https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt) and The Frontend application will be available at [https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt](https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt).
+- Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt]() and The Frontend application will be available at [https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt]().
 
 > Note: you need to first access the Backend url via browser and click the Continue button to be able to test the Frontend application (you also need to click the Continue button when accessing the Frontend url).
 
