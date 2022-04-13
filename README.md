@@ -26,7 +26,7 @@ Follow the steps below to build the Angular application:
     };
     ```
 
-- Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Run `ng build --configuration development` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ### Production environment
 
@@ -50,7 +50,7 @@ Follow the steps below to build the Angular application:
     };
     ```
 
-- Run `ng build --prod` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## How to run the application (Frontend and Backend)
 
