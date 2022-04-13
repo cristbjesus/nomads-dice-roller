@@ -72,6 +72,8 @@ Follow the steps below:
 
 ### Development environment
 
+- Update the `environment.js` file as per [Build Frontend application](#build-frontend-application) instructions.
+
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
     ```
@@ -84,6 +86,8 @@ Follow the steps below:
 - Run `ng serve` to start the Frontend application. The application will be available at [http://localhost:4200](http://localhost:4200).
 
 ### Production environment
+
+- Update the `environment.prod.js` file as per [Build Frontend application](#build-frontend-application) instructions.
 
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
@@ -98,7 +102,7 @@ Follow the steps below:
 
 ### Production environment with LocalTunnel
 
-- Build the Angular application.
+- Update the `environment.prod.js` file as per [Build Frontend application](#build-frontend-application) instructions.
 
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
@@ -112,7 +116,7 @@ Follow the steps below:
     ```javascript
     const corsOptions = {
         // ...
-        origin: 'https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt'
+        origin: ['http://localhost:4200', 'https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt']
         // ...
     }
     ```
@@ -124,9 +128,9 @@ Follow the steps below:
     lt --port 80 --subdomain <YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME> # ...
     ```
 
-- Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt]() and The Frontend application will be available at [https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt]().
+- Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [http://localhost:5500](http://localhost:5500) / [https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt]() and the Frontend application will be available at [http://localhost:4200](http://localhost:4200) / [https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt]().
 
-> Note: you need to first access the Backend url via browser and click the Continue button to be able to test the Frontend application (you also need to click the Continue button when accessing the Frontend url).
+> Note: for LocalTunnel access you need to first access the Backend url via browser and click the Continue button to be able to test the Frontend application (you also need to click the Continue button when accessing the Frontend url).
 
 ## License
 [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
