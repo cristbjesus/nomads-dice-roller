@@ -1,0 +1,169 @@
+<nav class="navbar navbar-dark bg-dark mb-3">
+  <a class="navbar-brand" href="#">
+    <img alt="Nomads RPG Group" src="/assets/navbar-brand.png" class="rounded mr-2" />
+    Nomads RPG Group
+  </a>
+  <a class="navbar-brand" href="#" (click)="openCharacterNameModal()">
+    <fa-icon icon="cog"></fa-icon>
+  </a>
+</nav>
+
+<div class="container">
+  <div class="card text-white bg-dark mh-100">
+    <div class="card-body text-center">
+      <h4 class="d-inline-block d-md-block">
+        Dice roller
+        <a href="#" (click)="hiddenDiceRoll = !hiddenDiceRoll">
+          <fa-icon icon="user-shield" class="ml-1 mr-2" [class]="hiddenDiceRoll ? 'text-white' : 'text-muted'">
+          </fa-icon>
+        </a>
+      </h4>
+
+      <fa-icon #diceRollerTooltip="ngbTooltip" icon="info-circle" transform="shrink-4 up-6" class="d-md-none"
+        ngbTooltip="This app uses randomness from  RANDOM.ORG's technology. 
+        Click the icon beside to enable/disable secret rolls." triggers="click:blur" placement="bottom" role="button">
+      </fa-icon>
+
+      <p class="d-none d-md-block">
+        <small>
+          This app uses randomness from RANDOM.ORG's technology. Click the icon above to enable/disable secret rolls.
+        </small>
+      </p>
+
+      <form [formGroup]="diceRollerFormGroup">
+        <div class="form-row justify-content-sm-center w-100">
+          <div class="col-8 col-md-3 col-lg-2 my-1">
+            <input type="text" formControlName="numberOfDice" class="form-control" type="number" min="1" step="1"
+              placeholder="number of dice" onfocus="this.previousValue = this.value"
+              onkeydown="this.previousValue = this.value" oninput="validity.valid || (value = this.previousValue)" />
+          </div>
+
+          <div class="col-4 col-md-2 my-1">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-secondary text-white border-0">d</div>
+              </div>
+              <select class="custom-select" formControlName="numberOfFaces">
+                <option *ngFor="let die of DieEnum | keyvalue: keyvaluePipeCompareFn" [value]="die.value">
+                  {{ die.value }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="w-100 d-block d-md-none"></div>
+
+          <div class="col-3 col-md-auto col-xl-1 my-1">
+            <div class="btn-group btn-group-toggle btn-block" ngbRadioGroup formControlName="modifierSign">
+              <label ngbButtonLabel class="btn-secondary">
+                <input ngbButton type="radio" [value]="ModifierSignEnum.Plus" />+
+              </label>
+              <label ngbButtonLabel class="btn-secondary">
+                <input ngbButton type="radio" [value]="ModifierSignEnum.Minus" />-
+              </label>
+            </div>
+          </div>
+
+          <div class="col-9 col-md-2 col-lg-3 my-1">
+            <input type="text" formControlName="modifierValue" class="form-control border-0" type="number" min="0"
+              step="1" placeholder="modifier" onfocus="this.previousValue = this.value"
+              onkeydown="this.previousValue = this.value" oninput="validity.valid || (value = this.previousValue)" />
+          </div>
+
+          <div class="w-100 d-block d-md-none"></div>
+
+          <div class="col-md-2 my-1">
+            <button type="button" class="btn btn-success btn-block" (click)="roll()">
+              <fa-icon icon="dice-d20" class="mr-1"></fa-icon> Roll
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <ul class="list-group list-group-flush text-white bg-dark mh-100 overflow-auto">
+      <li *ngFor="let diceRollResult of diceRollResultsList; let first = first" class="list-group-item bg-dark"
+        [ngClass]="isDiceRollResultForCurrentCharacter(diceRollResult) 
+        ? (diceRollResult === diceRollResultsListForCurrentCharacter[0] ? 'text-white' : 'text-info') 
+        : 'text-muted'">
+        <div class="row">
+          <div class="col">
+            <fa-icon icon="user-shield" *ngIf="diceRollResult.hiddenDiceRoll" class="mr-2"></fa-icon>
+            <em class="mr-3">{{ diceRollResult.characterName }}:</em>
+            ( {{ diceRollResult.diceNotation }} )
+            <strong class="mx-2">{{ diceRollResult.reducedDiceRollResultWithModifiers }}</strong>
+            {{ diceRollResult.fullDiceRollResult | json }}
+          </div>
+          <div *ngIf="isDiceRollResultForCurrentCharacter(diceRollResult)" class="col-xs-1 mr-3">
+            <a href="#" class="text-danger" (click)="openConfirmRemoveResultModal(diceRollResult)">
+              <fa-icon icon="times"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #characterNameModal let-modal>
+  <div class="modal-header bg-dark text-white border-secondary">
+    <h4 class="modal-title">
+      <fa-icon icon="dragon" class="mr-2"></fa-icon>
+      Character profile
+    </h4>
+  </div>
+  <div class="modal-body bg-dark text-white border-secondary">
+    <form [formGroup]="characterProfileFormGroup">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-secondary text-white border-0">
+            <fa-icon icon="user"></fa-icon>
+          </div>
+        </div>
+        <input type="text" formControlName="name" class="form-control" placeholder="name" [allowedCharacters]="'\\w\\- '">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer bg-dark text-white border-secondary">
+    <button type="button" *ngIf="characterId" class="btn btn btn-outline-light"
+      (click)="modal.close(characterName)">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close(characterProfileFormGroup.controls.name.value)"
+      [disabled]="!characterProfileFormGroup.valid">
+      Save
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #confirmRemoveResultModal let-modal>
+  <div class="modal-header bg-dark text-white border-secondary">
+    <h4 class="modal-title">
+      <fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
+      Roll result deletion
+    </h4>
+  </div>
+  <div class="modal-body bg-dark text-white border-secondary">
+    <p><strong>Are you sure you want to delete this roll result?</strong></p>
+    <p>All information associated to this dice roll will be permanently deleted.
+      <span class="text-danger">This operation can not be undone.</span>
+    </p>
+  </div>
+  <div class="modal-footer bg-dark text-white border-secondary">
+    <button type="button" class="btn btn-outline-light" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modal.close()">Ok</button>
+  </div>
+</ng-template>
+
+<div class="fixed-bottom">
+  <ngb-toast *ngFor="let toast of toasts" class="mb-0 mw-100" [class]="toast.classname" [autohide]="true" [delay]="2000"
+    (hidden)="removeToast(toast)">
+    <ng-template [ngIf]="toast.template" [ngIfElse]="basicToast">
+      <ng-template [ngTemplateOutlet]="toast.template" [ngTemplateOutletContext]="{ toast: toast }"></ng-template>
+    </ng-template>
+    <ng-template #basicToast>{{ toast.text }}</ng-template>
+  </ngb-toast>
+</div>
+
+<ng-template #successRollToast let-toast='toast'>
+  <em class="mr-1">{{ toast.characterName }}:</em>
+  <strong>{{ toast.text }}</strong>
+</ng-template>
