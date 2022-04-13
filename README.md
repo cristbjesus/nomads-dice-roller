@@ -21,7 +21,7 @@ Follow the steps below to build the Angular application:
     ```javascript
     export const environment = {
         // ...
-        randomApiKey: '<YOUR_RANDOM_ORG_API_KEY>',
+        randomApiKey: '<YOUR_RANDOM_ORG_API_KEY>'
         // ...
     };
     ```
