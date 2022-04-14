@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
 
-
+&nbsp;
 
 ## Dependencies
 
@@ -13,16 +13,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [http-server](https://www.npmjs.com/package/http-server)
 - [LocalTunnel](http://localtunnel.github.io/www/)
 
-
+&nbsp;
 
 ## Build Frontend application
 
 Follow the steps below to build the Angular application:
 
 
-### Development environment build
+### Frontend development environment build
 
-- Update the `randomApiKey` environment variable in the `environment.js` file with your [RANDOM.ORG](https://www.random.org/) API key.
+- Update the `environment.js` file with your [RANDOM.ORG](https://www.random.org/) API key.
 
     ```javascript
     export const environment = {
@@ -35,9 +35,9 @@ Follow the steps below to build the Angular application:
 - Run `ng build --configuration development` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 
-### Production environment build
+### Frontend production environment build
 
-- Update the `randomApiKey` environment variable in the `environment.prod.js` file with your [RANDOM.ORG](https://www.random.org/) API key for the production environment.
+- Update the `environment.prod.js` file with your [RANDOM.ORG](https://www.random.org/) API key for the production environment.
 
     ```javascript
     export const environment = {
@@ -50,23 +50,14 @@ Follow the steps below to build the Angular application:
 - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 
-### Production environment build with LocalTunnel
+### Frontend production environment build with LocalTunnel
 
-- Update the `randomApiKey` environment variable in the `environment.prod.js` file with your [RANDOM.ORG](https://www.random.org/) API key for the production environment.
-
-    ```javascript
-    export const environment = {
-        // ...
-        randomApiKey: '<YOUR_RANDOM_ORG_PROD_API_KEY>'
-        // ...
-    };
-    ```
-
-- Update the `apiUrl` environment variable in the `environment.prod.js` file with your [LocalTunnel](http://localtunnel.github.io/www/) subdomain for your API.
+- Update the `environment.prod.js` file with your [RANDOM.ORG](https://www.random.org/) API key for production environment and with your [LocalTunnel](http://localtunnel.github.io/www/) subdomain for API.
 
     ```javascript
     export const environment = {
         // ...
+        randomApiKey: '<YOUR_RANDOM_ORG_PROD_API_KEY>',
         apiUrl: 'https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt'
         // ...
     };
@@ -74,7 +65,7 @@ Follow the steps below to build the Angular application:
 
 - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-
+&nbsp;
 
 ## How to run the application (Frontend and Backend)
 
@@ -83,7 +74,7 @@ Follow the steps below:
 
 ### Development environment serve
 
-- Update the `environment.js` file as per [Build Frontend application](#development-environment-build) instructions.
+- Update the `environment.js` file as per [Frontend development environment build](#frontend-development-environment-build) instructions.
 
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
@@ -99,7 +90,7 @@ Follow the steps below:
 
 ### Production environment serve
 
-- Update the `environment.prod.js` file as per [Build Frontend application](#production-environment-build) instructions.
+- Update the `environment.prod.js` file as per [Frontend production environment build](#frontend-production-environment-build) instructions.
 
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
 
@@ -115,7 +106,7 @@ Follow the steps below:
 
 ### Production environment serve with http-server and LocalTunnel
 
-- [Build Frontend application](#production-environment-build-with-localtunnel).
+- Run the [Frontend production environment build with LocalTunnel](#frontend-production-environment-build-with-localtunnel).
 
 - Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret and with your [LocalTunnel](http://localtunnel.github.io/www/) subdomains.
 
@@ -126,11 +117,11 @@ Follow the steps below:
     LOCAL_TUNNEL_SUBDOMAIN_NAME=<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>
     ```
 
-- Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [http://localhost:5500](http://localhost:5500) / [https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt]() and the Frontend application will be available at [http://localhost:8080](http://localhost:8080) / [https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt]().
+- Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [http://localhost:5500](http://localhost:5500) | `https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt` and the Frontend application will be available at [http://localhost:8080](http://localhost:8080) | `https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt`.
 
 > Note: for LocalTunnel access you need to first access the Backend url via browser and click the Continue button to be able to test the Frontend application (you also need to click the Continue button when accessing the Frontend url).
 
-
+&nbsp;
 
 ## License
 [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
