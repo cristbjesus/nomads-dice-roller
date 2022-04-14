@@ -105,28 +105,13 @@ Follow the steps below:
 
 - [Build Frontend application](#production-environment-build-with-localtunnel).
 
-- Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret.
+- Update the `.env` file with your [Stream](https://getstream.io/) API Key / App Secret and with your [LocalTunnel](http://localtunnel.github.io/www/) subdomains.
 
     ```
     STREAM_API_KEY=<YOUR_STREAM_API_KEY>
     STREAM_APP_SECRET=<YOUR_STREAM_APP_SECRET>
-    ```
-
-- Update the cors options in the `server.js` file with the default port for [http-server](https://www.npmjs.com/package/http-server) and with your [LocalTunnel](http://localtunnel.github.io/www/) subdomain for your Frontend.
-
-    ```javascript
-    const corsOptions = {
-        // ...
-        origin: ['http://localhost:8080', 'https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt']
-        // ...
-    }
-    ```
-
-- Update the commands used to start this application in the `start.sh` file with your [LocalTunnel](http://localtunnel.github.io/www/) subdomains.
-
-    ```sh
-    lt --port 5500 --subdomain <YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME> # ...
-    lt --port 8080 --subdomain <YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME> # ...
+    LOCAL_TUNNEL_API_SUBDOMAIN_NAME=<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>
+    LOCAL_TUNNEL_SUBDOMAIN_NAME=<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>
     ```
 
 - Start both the Backend and the Frontend applications by running the `start.sh` shell script. The Backend application will be available at [http://localhost:5500](http://localhost:5500) / [https://<YOUR_LOCAL_TUNNEL_API_SUBDOMAIN_NAME>.loca.lt]() and the Frontend application will be available at [http://localhost:8080](http://localhost:8080) / [https://<YOUR_LOCAL_TUNNEL_SUBDOMAIN_NAME>.loca.lt]().
